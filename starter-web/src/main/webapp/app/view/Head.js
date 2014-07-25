@@ -16,7 +16,7 @@ Ext.define('App.view.Head', {
 						flex : 1
 					}, {
 						xtype : 'button',
-//						glyph : 72,
+						// glyph : 72,
 						text : 'Admin',
 						margins : {
 							top : 5,
@@ -27,11 +27,11 @@ Ext.define('App.view.Head', {
 						menu : {
 							items : [{
 										text : 'Settings',
-//										glyph : 0xe809,
+										// glyph : 0xe809,
 										itemId : 'settingsButton'
 									}, {
 										text : 'logout',
-//										glyph : 0xe802,
+										// glyph : 0xe802,
 										href : 'logout',
 										hrefTarget : '_self'
 									}]
