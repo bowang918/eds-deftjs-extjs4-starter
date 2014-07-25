@@ -12,7 +12,27 @@
 	<packaging>war</packaging>
 	<name>starter-web Maven Webapp</name>
 	<url>http://maven.apache.org</url>
+	<properties>
+		<extjs.version>4.2.2</extjs.version>
+	</properties>
 	<dependencies>
+		<dependency>
+			<groupId>resources</groupId>
+			<artifactId>extjs-gpl</artifactId>
+			<version>${extjs.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>resources</groupId>
+			<artifactId>extjs-gpl-ux</artifactId>
+			<version>${extjs.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>resources</groupId>
+			<artifactId>extjs-gpl-debug</artifactId>
+			<version>${extjs.version}</version>
+		</dependency>
 		<dependency>
 			<groupId>org.seven7</groupId>
 			<artifactId>starter-services</artifactId>
@@ -79,7 +99,6 @@
 		<dependency>
 			<groupId>javax</groupId>
 			<artifactId>javaee-api</artifactId>
-			<version>7.0</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -87,6 +106,14 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
+	<repositories>
+		<!-- download private extjs-gpl resources -->
+		<repository>
+			<id>rasc</id>
+			<name>My Private Repository</name>
+			<url>http://repository.rasc.ch</url>
+		</repository>
+	</repositories>
 	<build>
 		<finalName>${project.artifactId}</finalName>
 	</build>
