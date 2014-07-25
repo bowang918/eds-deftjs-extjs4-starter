@@ -3,5 +3,13 @@ Ext.define('App.view.Navigation', {
 			alias : 'widget.navigation',
 			collapsible : true,
 			title : 'Navigation',
-			width : 150
+			width : 150,
+			itemId : 'navigation',
+			layout : 'fit',
+			minWidth : 100,
+			maxWidth : 200,
+			border : true,
+			rootVisible : false,
+			animate : false,
+			store : Ext.create('App.store.Navigation')
 		});

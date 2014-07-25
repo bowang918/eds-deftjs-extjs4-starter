@@ -17,6 +17,9 @@ Ext.define("App.Application", {
 					],
 
 			init : function() {
+				Ext.fly('circle').destroy();
+				//Sets the default font-family to use for components that support a glyph config
+				Ext.setGlyphFontFamily('custome');
 				// Configure the DeftJS IoC container
 				Deft.Injector.configure({
 //							companyStore : "App.store.CompanyStore",
@@ -25,10 +28,10 @@ Ext.define("App.Application", {
 
 				// Set up QuickTips and create the Viewport
 				Ext.tip.QuickTipManager.init();
-
+				Ext.create("App.view.Viewport");
 			}
 		});
 
 Ext.onReady(function() {
-			Ext.create("App.view.Viewport");
+			Ext.create("App.Application");
 		});
