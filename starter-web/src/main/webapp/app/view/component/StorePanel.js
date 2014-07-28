@@ -3,7 +3,9 @@ Ext.define('App.view.component.StorePanel', {
 			alias : 'widget.storepanel',
 
 			title : 'STORE_READ and STORE_MODIFY',
-			// store: 'Users',
+			store : 'component.Users',
+			controller : 'App.controller.component.StorePanel',
+			itemId : 'storepanel',
 			closable : true,
 			initComponent : function() {
 				var me = this;
@@ -45,27 +47,27 @@ Ext.define('App.view.component.StorePanel', {
 									})],
 
 							dockedItems : [{
-								xtype : 'toolbar',
-								dock : 'top',
-								items : [{
-											text : 'New',
-											action : 'new'
-										}, {
-											text : 'Delete',
-											action : 'delete',
-											disabled : true
-										}, '->', {
-											fieldLabel : 'Filter',
-											labelWidth : 40,
-											xtype : 'textfield',
-											itemId : 'filtertextfield'
-										}]
-									// }, {
-									// xtype: 'pagingtoolbar',
-									// store: me.getStore(),
-									// dock: 'bottom',
-									// displayInfo: true
-								}]
+										xtype : 'toolbar',
+										dock : 'top',
+										items : [{
+													text : 'New',
+													itemId : 'newButton'
+												}, {
+													text : 'Delete',
+													itemId : 'deleteButton',
+													disabled : true
+												}, '->', {
+													fieldLabel : 'Filter',
+													labelWidth : 40,
+													xtype : 'textfield',
+													itemId : 'filtertextfield'
+												}]
+									}, {
+										xtype : 'pagingtoolbar',
+										store : me.getStore(),
+										dock : 'bottom',
+										displayInfo : true
+									}]
 
 						});
 

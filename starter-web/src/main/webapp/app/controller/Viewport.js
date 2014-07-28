@@ -42,7 +42,8 @@ Ext.define('App.controller.Viewport', {
 			
 			showTab: function(state){
 				var me = this;
-				var tab = me.getTabPanel().child('panel[navigationId=' + state.data.viewConfig.navigationId + ']');
+				if(state&&state.data){
+					var tab = me.getTabPanel().child('panel[navigationId=' + state.data.viewConfig.navigationId + ']');
 					if (!tab) {
 						Ext.syncRequire(state.data.view, function() {
 									var viewObject = Ext.create(state.data.view, state.data.viewConfig);
@@ -50,6 +51,7 @@ Ext.define('App.controller.Viewport', {
 								});
 					}
 					me.getTabPanel().setActiveTab(tab);
+				}
 			},
 
 			onTabChange : function(tabPanel, newCard, oldCard, eOpts) {

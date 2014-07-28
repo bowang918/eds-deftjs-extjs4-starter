@@ -21,9 +21,8 @@
 		</div>
 	</body>
 	<script type="text/javascript" src="resources/extjs-gpl/4.2.2/ext-all-debug.js"></script>
+	<script type="text/javascript" src="services/api.js"></script>
 	<script type="text/javascript" src="resources/deft/deft-debug.js"></script>
 	<script type="text/javascript" src="resources/extjs.history.js"></script>
-		
-	<!-- <script type="text/javascript" src="api.js"></script> -->
 	<script type="text/javascript" src="app.js"></script>
 </html>

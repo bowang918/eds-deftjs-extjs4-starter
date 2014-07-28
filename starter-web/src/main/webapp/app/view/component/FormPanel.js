@@ -8,25 +8,25 @@ Ext.define('App.view.component.FormPanel', {
 				type : 'vbox',
 				align : 'stretch'
 			},
+			controller : 'App.controller.component.FormPanel',
 
 			closable : true,
-			// constructor : function(config) {
-			// var me = this;
-			// Ext.applyIf(me, {
-			// api : {
-			// load : formLoadService.getFormData,
-			// submit : formSubmitService.handleFormSubmit
-			// },
-			// paramsAsHash : true
-			// });
-			// this.callParent(arguments);
-			// },
+			constructor : function(config) {
+				var me = this;
+				Ext.applyIf(me, {
+							api : {
+								load : formController.getFormData,
+								submit : formController.handleFormSubmit
+							},
+							paramsAsHash : true
+						});
+				this.callParent(arguments);
+			},
 
 			initComponent : function() {
 				var me = this;
 
 				Ext.applyIf(me, {
-
 							items : [{
 										xtype : 'textfield',
 										name : 'osName',
@@ -58,14 +58,17 @@ Ext.define('App.view.component.FormPanel', {
 							buttons : [{
 										xtype : 'button',
 										action : 'simple',
+										itemId : 'simpleCallButton',
 										text : 'Call SIMPLE method'
 									}, {
 										xtype : 'button',
 										text : 'Call FORM_LOAD method',
+										itemId : 'formLoadButton',
 										action : 'form_load'
 									}, {
 										text : 'Submit',
 										action : 'submit',
+										itemId : 'submitButton',
 										disabled : true,
 										formBind : true
 									}]
@@ -74,5 +77,4 @@ Ext.define('App.view.component.FormPanel', {
 
 				me.callParent(arguments);
 			}
-
 		});
