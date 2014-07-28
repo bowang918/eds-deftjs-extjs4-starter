@@ -5,6 +5,14 @@ Ext.define('App.controller.Viewport', {
 			config : {},
 
 			init : function() {
+				var me = this;
+				// Bind to StateChange Event
+			    History.Adapter.bind(window,'statechange',function(){ // Note: We are using statechange instead of popstate
+			        var state = History.getState(); // Note: We are using History.getState() instead of event.state
+			        me.showTab(state);
+			        
+			    });
+			    me.showTab(History.getState());
 				return this.callParent(arguments);
 			},
 			control : {
@@ -28,17 +36,20 @@ Ext.define('App.controller.Viewport', {
 							treePath : node.getPath()
 						}
 					};
-					var tab = me.getTabPanel().child('panel[navigationId='
-							+ state.viewConfig.navigationId + ']');
+					History.pushState(state, node.raw.text, "?vid=" + node.raw.id);
+				}
+			},
+			
+			showTab: function(state){
+				var me = this;
+				var tab = me.getTabPanel().child('panel[navigationId=' + state.data.viewConfig.navigationId + ']');
 					if (!tab) {
-						Ext.syncRequire(state.view, function() {
-									var viewObject = Ext.create(state.view,
-											state.viewConfig);
+						Ext.syncRequire(state.data.view, function() {
+									var viewObject = Ext.create(state.data.view, state.data.viewConfig);
 									tab = me.getTabPanel().add(viewObject);
 								});
 					}
 					me.getTabPanel().setActiveTab(tab);
-				}
 			},
 
 			onTabChange : function(tabPanel, newCard, oldCard, eOpts) {

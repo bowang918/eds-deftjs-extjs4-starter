@@ -9,6 +9,7 @@ Ext.define('App.view.component.FormPanel', {
 				align : 'stretch'
 			},
 
+			closable : true,
 			// constructor : function(config) {
 			// var me = this;
 			// Ext.applyIf(me, {

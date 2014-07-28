@@ -4,7 +4,7 @@ Ext.define('App.view.component.StorePanel', {
 
 			title : 'STORE_READ and STORE_MODIFY',
 			// store: 'Users',
-
+			closable : true,
 			initComponent : function() {
 				var me = this;
 

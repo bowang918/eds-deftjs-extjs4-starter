@@ -25,7 +25,7 @@ Ext.define("App.Application", {
 //							companyStore : "App.store.CompanyStore",
 //							companyService : "App.store.CompanyService"
 						});
-
+						
 				// Set up QuickTips and create the Viewport
 				Ext.tip.QuickTipManager.init();
 				Ext.create("App.view.Viewport");
