@@ -42,7 +42,7 @@ Ext.define('App.controller.Viewport', {
 			
 			showTab: function(state){
 				var me = this;
-				if(state&&state.data){
+				if(state&&state.data&&state.data.viewConfig){
 					var tab = me.getTabPanel().child('panel[navigationId=' + state.data.viewConfig.navigationId + ']');
 					if (!tab) {
 						Ext.syncRequire(state.data.view, function() {

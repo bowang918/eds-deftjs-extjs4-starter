@@ -38,6 +38,13 @@
 				<scope>import</scope>
 			</dependency>
 			<dependency>
+				<groupId>org.springframework.security</groupId>
+				<artifactId>spring-security-bom</artifactId>
+				<version>3.2.4.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
+			<dependency>
 				<groupId>com.google.guava</groupId>
 				<artifactId>guava-base</artifactId>
 				<version>r03</version>
@@ -81,5 +88,6 @@
 		<module>starter-web</module>
 		<module>starter-domain</module>
 		<module>starter-services</module>
+		<module>starter-resources</module>
 	</modules>
 </project>

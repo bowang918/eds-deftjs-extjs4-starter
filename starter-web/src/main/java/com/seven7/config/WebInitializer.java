@@ -8,12 +8,11 @@ import org.eclipse.jetty.servlets.GzipFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
-public class WebInitializer extends
-		AbstractAnnotationConfigDispatcherServletInitializer {
+public class WebInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] { WebConfig.class, ComponentConfig.class, DataConfig.class };
+		return new Class[] { WebConfig.class, ComponentConfig.class, DataConfig.class ,SecurityConfig.class };
 	}
 
 	@Override
