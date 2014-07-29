@@ -1,9 +1,9 @@
 Ext.define('App.view.component.StorePanel', {
 			extend : 'Ext.grid.Panel',
+			requires : ['App.store.component.Users'],
 			alias : 'widget.storepanel',
-
 			title : 'STORE_READ and STORE_MODIFY',
-			store : 'component.Users',
+			store : Ext.create('App.store.component.Users'),
 			controller : 'App.controller.component.StorePanel',
 			itemId : 'storepanel',
 			closable : true,

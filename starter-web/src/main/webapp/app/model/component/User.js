@@ -1,30 +1,30 @@
-Ext.define("Starter.model.component.User", {
-			extend : "Ext.data.Model",
+Ext.define('App.model.component.User', {
+			extend : 'Ext.data.Model',
 			fields : [{
-						name : "id",
-						type : "string"
+						name : 'id',
+						type : 'string'
 					}, {
-						name : "firstName",
-						type : "string",
+						name : 'firstName',
+						type : 'string',
 						convert : null
 					}, {
-						name : "lastName",
-						type : "string",
+						name : 'lastName',
+						type : 'string',
 						convert : null
 					}, {
-						name : "email",
-						type : "string",
+						name : 'email',
+						type : 'string',
 						convert : null
 					}, {
-						name : "department",
-						type : "string",
+						name : 'department',
+						type : 'string',
 						convert : null
 					}],
 			validations : [{
-						type : "presence",
-						field : "lastName"
+						type : 'presence',
+						field : 'lastName'
 					}, {
-						type : "email",
-						field : "email"
+						type : 'email',
+						field : 'email'
 					}]
 		});

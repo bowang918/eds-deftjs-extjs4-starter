@@ -1,6 +1,6 @@
-Ext.define('Starter.store.component.Users', {
+Ext.define('App.store.component.Users', {
 			extend : 'Ext.data.Store',
-			model : 'Starter.model.component.User',
+			model : 'App.model.component.User',
 			autoLoad : true,
 			pageSize : 25,
 			remoteSort : true,
