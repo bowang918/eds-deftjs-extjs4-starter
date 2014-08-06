@@ -10,6 +10,7 @@ import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.ServletRequestDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -19,7 +20,7 @@ import ch.ralscha.extdirectspring.annotation.ExtDirectMethod;
 import ch.ralscha.extdirectspring.annotation.ExtDirectMethodType;
 import ch.ralscha.extdirectspring.bean.ExtDirectFormPostResult;
 
-import com.seven7.domain.FormBean;
+import com.seven7.domain.dto.FormBean;
 import com.seven7.service.FormLoadService;
 import com.seven7.service.FormSubmitService;
 
@@ -38,6 +39,7 @@ public class FormController {
 	}
 
 	@ExtDirectMethod(ExtDirectMethodType.FORM_LOAD)
+	@PreAuthorize("isAuthenticated()")
 	public FormBean getFormData() {
 		OperatingSystemMXBean osBean = ManagementFactory.getOperatingSystemMXBean();
 
@@ -49,6 +51,7 @@ public class FormController {
 	}
 	
 	@ExtDirectMethod(ExtDirectMethodType.FORM_POST)
+	@PreAuthorize("isAuthenticated()")
 	public ExtDirectFormPostResult handleFormSubmit(FormBean bean, MultipartFile screenshot) throws IOException {
 		ExtDirectFormPostResult result = new ExtDirectFormPostResult();
 		result.addResultProperty("response", formSubmitService.handleFormSubmit(bean, screenshot.getContentType(),screenshot.getOriginalFilename(),screenshot.getSize(),screenshot.getInputStream()));

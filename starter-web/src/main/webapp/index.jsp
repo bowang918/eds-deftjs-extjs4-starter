@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="resources/customtheme/customtheme-all-debug.css">
 		<link rel="stylesheet" href="resources/css/app.css">
 		<link rel="stylesheet" href="resources/css/Notification.css">
-		<!-- <script type="text/javascript" src="i18n.js"></script> -->
+		<script type="text/javascript" src="services/i18n.js"></script>
 		
 	</head>
 	<body>

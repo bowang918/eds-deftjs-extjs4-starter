@@ -5,7 +5,7 @@ import java.lang.management.OperatingSystemMXBean;
 
 import org.springframework.stereotype.Service;
 
-import com.seven7.domain.FormBean;
+import com.seven7.domain.dto.FormBean;
 
 @Service
 public class FormLoadService {

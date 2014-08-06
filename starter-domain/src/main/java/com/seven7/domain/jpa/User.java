@@ -1,17 +1,24 @@
-package com.seven7.domain;
+package com.seven7.domain.jpa;
 
-import java.util.UUID;
-
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.validator.constraints.Email;
 
 import ch.rasc.extclassgenerator.Model;
 import ch.rasc.extclassgenerator.ModelField;
 
-@Model(value = "Starter.model.User", paging = true, createMethod = "storeService.create", readMethod = "storeService.read", updateMethod = "storeService.update", destroyMethod = "storeService.destroy")
+@Entity
+@Model
 public class User {
 
+	@Id
+	@GeneratedValue(generator = "uuid")
+	@GenericGenerator(name = "uuid", strategy = "uuid")
+	@ModelField(convert = "null")
 	private String id;
 
 	@ModelField(convert = "null")
@@ -32,8 +39,8 @@ public class User {
 		// default constructor
 	}
 
-	public User(String firstName, String lastName, String email, String department) {
-		this.id = UUID.randomUUID().toString();
+	public User(String firstName, String lastName, String email,
+			String department) {
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
@@ -78,8 +85,9 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
-				+ ", department=" + department + "]";
+		return "User [id=" + id + ", firstName=" + firstName + ", lastName="
+				+ lastName + ", email=" + email + ", department=" + department
+				+ "]";
 	}
 
 }

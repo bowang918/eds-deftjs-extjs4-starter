@@ -9,7 +9,7 @@ Ext.define('App.view.Head', {
 				align : 'stretch'
 			},
 			items : [{
-						html : 'Starter',
+						html : i18n.appTitle,
 						cls : 'appHeader'
 					}, {
 						xtype : 'tbspacer',

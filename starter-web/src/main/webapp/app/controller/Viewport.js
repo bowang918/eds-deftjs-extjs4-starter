@@ -60,10 +60,11 @@ Ext.define('App.controller.Viewport', {
 					me.getNavigation().selectPath(newCard.treePath);
 				}
 			},
-			onRemove : function() {
+			onRemove : function(viewport, component) {
 				var me = this;
 				if (me.getTabPanel().items.length === 0) {
 					me.getNavigation().getSelectionModel().deselectAll();
+//					History.pushState({}, '', '');
 				}
 			}
 		});

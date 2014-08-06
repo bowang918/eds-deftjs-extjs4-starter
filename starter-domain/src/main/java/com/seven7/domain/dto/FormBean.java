@@ -1,4 +1,4 @@
-package com.seven7.domain;
+package com.seven7.domain.dto;
 
 import java.util.Date;
 
