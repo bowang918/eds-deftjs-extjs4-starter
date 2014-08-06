@@ -2,6 +2,7 @@ package com.seven7.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -22,15 +23,15 @@ public class SecurityConfig {
 		//@formatter:on
 	}
 
-//	@Configuration
-//	@Order(1)
-//	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
-//		protected void configure(HttpSecurity http) throws Exception {
-//			//@formatter:off
-//			http.antMatcher("services/router/**").authorizeRequests().anyRequest().hasRole("ADMIN").and().httpBasic();
-//			//@formatter:on
-//		}
-//	}
+	@Configuration
+	@Order(1)
+	public static class ApiWebSecurityConfigurationAdapter extends WebSecurityConfigurerAdapter {
+		protected void configure(HttpSecurity http) throws Exception {
+			//@formatter:off
+			http.antMatcher("services/i18n*").headers().disable().authorizeRequests().anyRequest().permitAll();
+			//@formatter:on
+		}
+	}
 
 	@Configuration
 	public static class FormLoginWebSecurityConfigurerAdapter extends WebSecurityConfigurerAdapter {
