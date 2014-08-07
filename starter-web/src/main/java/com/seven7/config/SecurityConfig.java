@@ -1,5 +1,7 @@
 package com.seven7.config;
 
+import javax.sql.DataSource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -12,6 +14,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter;
 import org.springframework.security.web.header.writers.frameoptions.XFrameOptionsHeaderWriter.XFrameOptionsMode;
 
@@ -19,7 +22,7 @@ import org.springframework.security.web.header.writers.frameoptions.XFrameOption
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class SecurityConfig {
-
+	
 	@Autowired
 	private UserDetailsService userDetailsService;
 
@@ -50,12 +53,20 @@ public class SecurityConfig {
 	@Configuration
 	public static class FormLoginWebSecurityConfigurerAdapter extends
 			WebSecurityConfigurerAdapter {
+		
+		@Autowired
+		private DataSource dataSource;
+		
 		@Override
 		protected void configure(HttpSecurity http) throws Exception {
+			JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
+			tokenRepo.setDataSource(dataSource);
+			tokenRepo.setCreateTableOnStartup(false);
+			tokenRepo.afterPropertiesSet();
 			//@formatter:off
 			http.headers().contentTypeOptions().xssProtection().cacheControl().httpStrictTransportSecurity().addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN))
 			.and().csrf().disable()
-			.authorizeRequests().anyRequest().authenticated().and().formLogin();
+			.authorizeRequests().anyRequest().authenticated().and().formLogin().and().logout().deleteCookies("JSESSIONID").permitAll().and().rememberMe().tokenRepository(tokenRepo);
 			//@formatter:on
 		}
 	}
