@@ -7,11 +7,11 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 
 @Configuration
-@ComponentScan(basePackages = { "com.seven7.config", "com.seven7.service", "com.seven7.dao" })
+@ComponentScan(basePackages = { "com.seven7.config", "com.seven7.service", "com.seven7.dao", "com.seven7.security" })
 public class ComponentConfig {
 
 	@Bean
-	public MessageSource messageSource(){
+	public MessageSource messageSource() {
 		ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
 		messageSource.setBasename("classpath:i18n/messages");
 		messageSource.setFallbackToSystemLocale(false);

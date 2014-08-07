@@ -12,7 +12,7 @@ import ch.ralscha.extdirectspring.bean.ExtDirectStoreReadRequest;
 import ch.ralscha.extdirectspring.bean.ExtDirectStoreResult;
 import ch.ralscha.extdirectspring.filter.StringFilter;
 
-import com.seven7.domain.jpa.User;
+import com.seven7.domain.entity.User;
 import com.seven7.repository.UserRepository;
 
 @Controller
