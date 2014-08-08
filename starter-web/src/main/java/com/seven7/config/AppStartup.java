@@ -2,6 +2,8 @@ package com.seven7.config;
 
 import javax.transaction.Transactional;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -13,10 +15,10 @@ import com.seven7.repository.UserRepository;
 
 @Component
 public class AppStartup implements ApplicationListener<ContextRefreshedEvent> {
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -24,7 +26,9 @@ public class AppStartup implements ApplicationListener<ContextRefreshedEvent> {
 	@Transactional
 	public void onApplicationEvent(ContextRefreshedEvent event) {
 
-		if(userRepository.count()==0){
+		configLogging();
+
+		if (userRepository.count() == 0) {
 			User adminUser = new User();
 			adminUser.setUserName("admin");
 			adminUser.setEmail("test@test.ch");
@@ -35,6 +39,14 @@ public class AppStartup implements ApplicationListener<ContextRefreshedEvent> {
 			adminUser.setEnabled(true);
 			adminUser.setRole("ADMIN");
 			userRepository.save(adminUser);
+		}
+	}
+
+	private void configLogging() {
+		Logger logger = (Logger) LogManager.getRootLogger();
+		if (logger.getAppenders().containsKey("databaseAppender")) {
+			// already configured
+			return;
 		}
 	}
 
