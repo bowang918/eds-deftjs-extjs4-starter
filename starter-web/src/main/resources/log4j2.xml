@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration  monitorInterval="30" packages="org.apache.logging.log4j">
+<Configuration  monitorInterval="30" packages="">
 	<Properties>
 		<Property name="filename">target/starter.log</Property>
 	</Properties>
@@ -7,19 +7,24 @@
 	
 	<Appenders>
   
-		<Console name="stdout" target="SYSTEM_OUT">
+		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %msg%n%rEx{full}"/>
 		</Console>
-		<Appender type="File" name="File" fileName="${filename}">
-			<Layout type="PatternLayout">
-				<Pattern>%d %p %C{1.} [%t] %m%n</Pattern>
-			</Layout>
-		</Appender>
+		<RollingFile name="RollingFile" fileName="logs/app.log" filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="250 MB"/>
+			</Policies>
+			<DefaultRolloverStrategy max="20"/>
+		</RollingFile>
 	</Appenders>
-  
 	<Loggers>
 		<Root level="debug">
-			<AppenderRef ref="stdout"/>
+			<AppenderRef ref="Console"/>
+			<AppenderRef ref="RollingFile"/>
 		</Root>
 	</Loggers>
 </Configuration>
