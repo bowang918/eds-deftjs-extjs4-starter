@@ -73,7 +73,8 @@ Ext.define('App.Application', {
 				}
 			},
 			gloableErrorHandler: function(errorMsg,url,lineNumber){
-				//TODO log the js errors to the backend
+				var message = errorMsg + "-->" + url + "::" + lineNumber;
+				logController.error(message);
 			}
 		});
 

@@ -24,7 +24,9 @@
 	<Loggers>
 		<Root level="debug">
 			<AppenderRef ref="Console"/>
-			<AppenderRef ref="RollingFile"/>
 		</Root>
+		<Logger name="ErrorLogger" level="error" additivity="false">
+			<AppenderRef ref="RollingFile"/>
+		</Logger>
 	</Loggers>
 </Configuration>
