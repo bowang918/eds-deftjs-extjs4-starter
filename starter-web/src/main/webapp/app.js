@@ -11,12 +11,18 @@ Ext.syncRequire(['Deft.mixin.Injectable', 'Deft.mixin.Controllable']);
 /* </debug> */
 
 // add direct api method
-//Ext.require('Ext.direct.*', function() {
-//			Ext.app.REMOTING_API.timeout = 600000; // 10 minutes.
-//			Ext.app.REMOTING_API.maxRetries = 0; // setting to zer0. no need
-//			// to call the service again
-//			Ext.direct.Manager.addProvider(Ext.app.REMOTING_API);
-//		});
+Ext.require('Ext.direct.*', function() {
+			Ext.app.REMOTING_API.timeout = 600000; // 10 minutes.
+			Ext.app.REMOTING_API.maxRetries = 0; // setting to zer0. no need to call the service again
+			var heartbeat = new Ext.direct.PollingProvider({
+					type : 'polling',
+					interval : 60 * 1000, // 1 minutes
+					url : Ext.app.POLLING_URLS.heartbeat
+				});
+				
+				Ext.direct.Manager.addProvider(Ext.app.REMOTING_API, heartbeat);
+		});
+		
 Ext.define('App.Application', {
 			extend : 'Deft.mvc.Application',
 			requires : ['App.view.Viewport','App.ux.window.Notification'],
@@ -35,14 +41,6 @@ Ext.define('App.Application', {
 
 				// Set up QuickTips and create the Viewport
 				Ext.tip.QuickTipManager.init();
-				
-				var heartbeat = new Ext.direct.PollingProvider({
-					type : 'polling',
-					interval : 60 * 1000, // 1 minutes
-					url : Ext.app.POLLING_URLS.heartbeat
-				});
-				
-				Ext.direct.Manager.addProvider(Ext.app.REMOTING_API, heartbeat);
 				
 				Ext.direct.Manager.on('event',function( event, provider, eOpts ){
 					if (event.code && event.code === 'parse') {

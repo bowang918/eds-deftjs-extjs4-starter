@@ -7,15 +7,15 @@ Ext.define('App.store.component.Users', {
 			remoteFilter : true,
 			autoSync : true,
 			proxy : {
-				type : "direct",
+				type : 'direct',
 				api : {
-					read : "gridController.read",
-					create : "gridController.create",
-					update : "gridController.update",
-					destroy : "gridController.destroy"
+					read : 'gridController.read',
+					create : 'gridController.create',
+					update : 'gridController.update',
+					destroy : 'gridController.destroy'
 				},
 				reader : {
-					root : "records"
+					root : 'records'
 				}
 			},
 			sorters : [{
