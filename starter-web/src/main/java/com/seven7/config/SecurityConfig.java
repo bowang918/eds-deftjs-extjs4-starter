@@ -45,7 +45,7 @@ public class SecurityConfig {
 			WebSecurityConfigurerAdapter {
 		protected void configure(HttpSecurity http) throws Exception {
 			//@formatter:off
-			http.antMatcher("services/i18n*").headers().disable().authorizeRequests().anyRequest().permitAll();
+			http.antMatcher("services/i18n*").headers().disable().csrf().disable().authorizeRequests().anyRequest().permitAll();
 			//@formatter:on
 		}
 	}
@@ -61,7 +61,7 @@ public class SecurityConfig {
 		protected void configure(HttpSecurity http) throws Exception {
 			JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
 			tokenRepo.setDataSource(dataSource);
-			tokenRepo.setCreateTableOnStartup(false);
+			tokenRepo.setCreateTableOnStartup(true);
 			tokenRepo.afterPropertiesSet();
 			//@formatter:off
 			http.headers().contentTypeOptions().xssProtection().cacheControl().httpStrictTransportSecurity().addHeaderWriter(new XFrameOptionsHeaderWriter(XFrameOptionsMode.SAMEORIGIN))

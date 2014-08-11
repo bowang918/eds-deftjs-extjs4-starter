@@ -1,0 +1,24 @@
+# [d]   = dev only. script or link tag
+# [ps]  = prod only. script or link tag
+# [dps] = dev and prod. script or link tag
+# [dp]  = dev and prod. script/link tag in dev. concat and minify in prod
+# [p]   = prod only. contact and minify. can be ommited
+
+
+app_js:
+  	/resources/extjs-gpl/{extjs.version}/ext-all-dev.js[d]
+  	/resources/extjs-gpl/{extjs.version}/ext-all.js[ps]
+	/services/api.js[d]
+	/services/api-{application.version}.js[ps]
+	/resources/deft/deft-debug.js[d]
+  	/resources/deft/deft.js[ps]
+	/resources/extjs.history.js[dps]
+	/resources/extjs-gpl/{extjs.version}/ux/
+	/app/
+	/app.js[dp]
+
+app_css:
+	/resources/customtheme/customtheme-all-debug.css[d]
+	/resources/customtheme/customtheme-all.css[ps]
+	/resources/css/app.css[dp]
+	/resources/css/Notification.css[dp]

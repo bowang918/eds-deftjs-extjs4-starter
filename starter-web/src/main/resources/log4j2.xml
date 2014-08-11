@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration  monitorInterval="30" packages="">
 	<Properties>
-		<Property name="filename">target/starter.log</Property>
+		<Property name="filename">C:/home/logs/app.log</Property>
 	</Properties>
 	<Filter type="ThresholdFilter" level="trace"/>
 	
@@ -10,7 +10,7 @@
 		<Console name="Console" target="SYSTEM_OUT">
 			<PatternLayout pattern="%d{HH:mm:ss.SSS} %-5level %msg%n%rEx{full}"/>
 		</Console>
-		<RollingFile name="RollingFile" fileName="logs/app.log" filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+		<RollingFile name="RollingFile" fileName="${filename}" filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
 			<PatternLayout>
 				<Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
 			</PatternLayout>
