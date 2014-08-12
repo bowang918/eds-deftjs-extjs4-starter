@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 import javax.validation.constraints.Size;
 
@@ -68,6 +70,7 @@ public class User {
 	private Integer failedLogins;
 
 	@JsonIgnore
+	@Temporal(TemporalType.TIMESTAMP)
 	private DateTime lockedOut;
 
 	public String getUserName() {
