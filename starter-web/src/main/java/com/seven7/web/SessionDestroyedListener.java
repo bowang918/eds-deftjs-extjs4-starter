@@ -20,7 +20,8 @@ public class SessionDestroyedListener implements
 	@Override
 	@Transactional
 	public void onApplicationEvent(SessionDestroyedEvent event) {
-		AccessLog accessLog = accessLogRepository.findBySessionId(event.getId());
+		AccessLog accessLog = accessLogRepository
+				.findBySessionId(event.getId());
 		accessLog.setLogOut(DateTime.now());
 	}
 
