@@ -30,12 +30,10 @@ public class SecurityController {
 	@PreAuthorize("isAuthenticated()")
 	@Transactional
 	public User getLoggedOnUser(HttpServletRequest request, HttpSession session) {
-		Object principal = SecurityContextHolder.getContext()
-				.getAuthentication().getPrincipal();
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (principal instanceof SecurityUserDetails) {
 
-			User user = userRepository
-					.findOne(((SecurityUserDetails) principal).getUserDbId());
+			User user = userRepository.findOne(((SecurityUserDetails) principal).getUserDbId());
 
 			AccessLog accessLog = new AccessLog();
 			accessLog.setUserName(user.getUserName());
